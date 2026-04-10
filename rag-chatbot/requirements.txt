@@ -1,12 +1,13 @@
 langchain
 langchain-community
 langchain-google-genai
-langchain-qdrant
+langchain-qdrant>=0.1.0
 langchain-huggingface
 qdrant-client
 sentence-transformers
 rank-bm25
 fastapi
-uvicorn
+uvicorn[standard]
 python-dotenv
 httpx
+numpy
