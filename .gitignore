@@ -1,0 +1,53 @@
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# Node / Frontend
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+build/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs
+server.log
+server_err.log
+*.log
+
+# Test & debug files
+test_*.py
+verify_*.py
+debug_*.py
+TEST_REPORT.md
+
+# Extracted skill folders
+rag-deploy-extracted/
+hybrid-rag-auditor-extracted/
+hybrid-rag-auditor-skill-extracted/
+hybrid-rag-skill-extracted/
+
+# Data volumes
+data/
+qdrant_storage/
+
+# Misc
+*.lnk
+*.zip
+*.skill
