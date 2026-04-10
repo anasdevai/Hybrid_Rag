@@ -1,0 +1,28 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /opt/hybrid-rag/Main
+            ./deploy.sh
+            ./scripts/smoke_test.sh
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "Deploy failed — check server logs"
