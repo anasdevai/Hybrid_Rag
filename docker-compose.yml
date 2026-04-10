@@ -10,7 +10,32 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+      rag-chatbot:
+        condition: service_healthy
     restart: unless-stopped
+
+  rag-chatbot:
+    build:
+      context: .
+      dockerfile: rag-chatbot/Dockerfile
+    env_file: .env
+    expose:
+      - "8001"
+    volumes:
+      - hf_models:/app/models
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 800M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/rag/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
 
   backend:
     build:
